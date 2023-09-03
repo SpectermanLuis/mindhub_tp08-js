@@ -124,6 +124,14 @@ function filtroCruzado() {
   console.log(arregloEventosBase)
   let filtradoPorTexto = filtrarPorTexto(arregloEventosBase, inputTexto.value)
   let filtradoPorTextoYCheckboxes = filtrarPorCategoria(filtradoPorTexto)
+  
+ if(filtradoPorTextoYCheckboxes.length  === 0) {
+    // Si no hay resultados, muestra el mensaje de notificación.
+    document.getElementById("mensajeNoResultados").style.display = "block";
+  } else {
+    document.getElementById("mensajeNoResultados").style.display = "none";
+ }
+
   crearMostrarTarjetas(filtradoPorTextoYCheckboxes, contenido)
 }
 

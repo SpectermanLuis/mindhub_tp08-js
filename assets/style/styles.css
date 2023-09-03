@@ -76,3 +76,12 @@ ul {
 .form-check-label{
  text-align:start !important; 
 }
+
+
+#mensajeNoResultados {
+  background-color: #ffcccc;
+  border: 1px solid #ff0000;
+  padding: 10px;
+  margin-top: 5px;
+  text-align: center;
+}

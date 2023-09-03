@@ -1,6 +1,20 @@
 
-let contenido = document.querySelector("#contenedor_tarjetas")
+let tarjetasContenedor = document.querySelector("#contenedor_tarjetas")
 let chekboxesContenedor = document.querySelector("#contenedor-checkboxes")
+
+
+crearMostrarCheckboxes(data.events, chekboxesContenedor)
+
+/* Generar arreglo de trabajo segun la pagina en la 
+que se esta posicionado - index , upcoming , past
+usando data.js  eventos y currentDate */
+
+let arregloEventosBase = []
+arregloEventosBase = crearArregloEventosBase(data)
+
+crearMostrarTarjetas(arregloEventosBase, tarjetasContenedor)
+
+
 
 function crearMostrarCheckboxes(arregloEventos, ubicacion) {
   let checkboxes = ""
@@ -14,8 +28,6 @@ function crearMostrarCheckboxes(arregloEventos, ubicacion) {
       categoriasUnicas.push(categoria)
     }
 
-    // crear los checkboxes
-
     let checkboxes = ""
     for (categoria of categoriasUnicas) {
       checkboxes += `<div class="form-check form-switch col-12 col-sm-12 col-md-5">
@@ -23,23 +35,21 @@ function crearMostrarCheckboxes(arregloEventos, ubicacion) {
 <label class="form-check-label" for="${categoria}">
   ${categoria}</label>
 </div>`
-
     }
-
     ubicacion.innerHTML = checkboxes
-
   })
 }
 
+
 function crearArregloEventosBase(data) {
 
-  let arregloEventosNecesarios=[] 
+  let arregloEventosNecesarios = []
   if (document.title === "Index") {
-     arregloEventosNecesarios = data.events
+    arregloEventosNecesarios = data.events
   } else if (document.title === "Upcoming_Events") {
-    arregloEventosNecesarios = data.events.filter(evento=>evento.date>=data.currentDate)
+    arregloEventosNecesarios = data.events.filter(evento => evento.date >= data.currentDate)
   } else if (document.title === "Past_Events") {
-    arregloEventosNecesarios = data.events.filter(evento=>evento.date<data.currentDate)
+    arregloEventosNecesarios = data.events.filter(evento => evento.date < data.currentDate)
   }
 
   return arregloEventosNecesarios
@@ -70,7 +80,6 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
     
             </div>
 
-
           <div class="row">
 
             <div class="col-3 p-0">
@@ -81,34 +90,31 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
               <h6 class="mb-0">U$S ${evento.price}</h6>
           </div>`
 
-         if(document.title==='Index'){
+    if (document.title === 'Index') {
 
-          tarjetas = tarjetas +          
-          `<div class="col-4">
+      tarjetas = tarjetas +
+        `<div class="col-4">
               <a href="./assets/pages/details.html?_id=${evento._id}" class="btn btn-primary">Details</a>
             </div>
           </div>
         </div>
       </div>`
-         } else {
-          tarjetas = tarjetas +          
-          `<div class="col-4">
+    } else {
+      tarjetas = tarjetas +
+        `<div class="col-4">
               <a href="../../assets/pages/details.html?_id=${evento._id}" class="btn btn-primary">Details</a>
             </div>
           </div>
         </div>
       </div>`
-         }
+    }
 
   }
 
   ubicacion.innerHTML = tarjetas
 }
 
-let arregloEventosBase=[]
-crearMostrarCheckboxes(data.events, chekboxesContenedor)
-arregloEventosBase = crearArregloEventosBase(data)
-crearMostrarTarjetas(arregloEventosBase, contenido)
+
 
 // poner filtros
 // volver a crearMostrarTarjetas con arreglo filtrado
@@ -117,22 +123,21 @@ const inputTexto = document.querySelector("#texto")
 const divChecks = document.getElementById("contenedor-checkboxes")
 
 inputTexto.addEventListener("input", () => { filtroCruzado() })
-
 divChecks.addEventListener("change", filtroCruzado)
 
 function filtroCruzado() {
-  console.log(arregloEventosBase)
+  // console.log(arregloEventosBase)
   let filtradoPorTexto = filtrarPorTexto(arregloEventosBase, inputTexto.value)
   let filtradoPorTextoYCheckboxes = filtrarPorCategoria(filtradoPorTexto)
-  
- if(filtradoPorTextoYCheckboxes.length  === 0) {
+
+  if (filtradoPorTextoYCheckboxes.length === 0) {
     // Si no hay resultados, muestra el mensaje de notificación.
     document.getElementById("mensajeNoResultados").style.display = "block";
   } else {
     document.getElementById("mensajeNoResultados").style.display = "none";
- }
+  }
 
-  crearMostrarTarjetas(filtradoPorTextoYCheckboxes, contenido)
+  crearMostrarTarjetas(filtradoPorTextoYCheckboxes, tarjetasContenedor)
 }
 
 function filtrarPorTexto(arregloDeElementos, texto) {
@@ -155,4 +160,3 @@ function filtrarPorCategoria(arregloDeElementos) {
 
   return elementosFiltrados
 }
-

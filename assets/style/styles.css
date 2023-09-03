@@ -18,13 +18,19 @@ nav {
   height: 27rem;
 }
 
+/* header{
+  min-height:30vh
+}
+ */
 footer {
   background-color: #4682a9;
-  height: 5vh;
+  /* height: 5vh; */
+  /* min-height:5vh  */
 }
 
 main {
   background-color: #91c8e4;
+ /*  min-height:65vh    */
 }
 
 .alto-imagen {

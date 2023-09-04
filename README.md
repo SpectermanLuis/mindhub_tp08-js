@@ -1,3 +1,8 @@
-## SPECTERMAN LUIS OMAR 
-# mindhub_tp08-js
-Practica MindHub Javascript ( checkbox , filtros y cards variables )
+# MINDHUB - FrontEnd - Turno Noche
+## SPECTERMAN LUIS OMAR
+### Trabajo Practico Amazing Javascript -  checkbox , cards variables .  Filtros.
+
+
+
+
+

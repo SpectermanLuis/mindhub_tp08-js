@@ -60,7 +60,7 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
 
   let tarjetas = ""
 
-  for (evento of arregloEventos) {
+  arregloEventos.forEach(evento => {
     tarjetas += `<div class="card col-md-3">
         <img src=" ${evento.image}" class="card-img card-img-top mt-1 object-fit-cover" alt="...">
 
@@ -109,11 +109,10 @@ function crearMostrarTarjetas(arregloEventos, ubicacion) {
       </div>`
     }
 
-  }
+  }) //aca termina el forEach
 
   ubicacion.innerHTML = tarjetas
 }
-
 
 
 // poner filtros
